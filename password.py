@@ -5,10 +5,15 @@ print("===== PASSWORD GENERATOR =====")
 
 password_length = int(input("Enter password length: "))
 
+include_symbols = input("Include special characters? (yes/no): ").lower()
+
 all_characters = (
     string.ascii_letters +
     string.digits
 )
+
+if include_symbols == "yes":
+    all_characters += string.punctuation
 
 generated_password = ""
 
