@@ -1,28 +1,50 @@
 import random
 import string
 
-print("===== PASSWORD GENERATOR =====")
+print("\n======= SECURE PASSWORD GENERATOR =======")
 
-try:
+while True:
 
-    password_length = int(input("Enter password length: "))
+    try:
 
-    include_symbols = input("Include special characters? (yes/no): ").lower()
+        password_length = int(input("\nEnter password length: "))
 
-    all_characters = (
-        string.ascii_letters +
-        string.digits
-    )
+        if password_length < 4:
+            print("⚠ Password length should be at least 4.")
+            continue
 
-    if include_symbols == "yes":
-        all_characters += string.punctuation
+        include_symbols = input(
+            "Include special characters? (yes/no): "
+        ).lower()
 
-    generated_password = ""
+        lower_case_letters = string.ascii_lowercase
+        upper_case_letters = string.ascii_uppercase
+        numeric_values = string.digits
 
-    for i in range(password_length):
-        generated_password += random.choice(all_characters)
+        all_characters = (
+            lower_case_letters +
+            upper_case_letters +
+            numeric_values
+        )
 
-    print("Generated Password:", generated_password)
+        if include_symbols == "yes":
+            all_characters += string.punctuation
 
-except ValueError:
-    print("Please enter a valid numeric length.")
+        generated_password = ""
+
+        for i in range(password_length):
+            generated_password += random.choice(all_characters)
+
+        print("\nGenerated Secure Password:")
+        print(generated_password)
+
+        repeat_choice = input(
+            "\nGenerate another password? (yes/no): "
+        ).lower()
+
+        if repeat_choice != "yes":
+            print("\nPassword Generator Closed Successfully.")
+            break
+
+    except ValueError:
+        print("\n⚠ Please enter a valid numeric value.")
