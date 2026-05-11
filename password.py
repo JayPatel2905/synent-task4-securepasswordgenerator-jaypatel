@@ -3,21 +3,26 @@ import string
 
 print("===== PASSWORD GENERATOR =====")
 
-password_length = int(input("Enter password length: "))
+try:
 
-include_symbols = input("Include special characters? (yes/no): ").lower()
+    password_length = int(input("Enter password length: "))
 
-all_characters = (
-    string.ascii_letters +
-    string.digits
-)
+    include_symbols = input("Include special characters? (yes/no): ").lower()
 
-if include_symbols == "yes":
-    all_characters += string.punctuation
+    all_characters = (
+        string.ascii_letters +
+        string.digits
+    )
 
-generated_password = ""
+    if include_symbols == "yes":
+        all_characters += string.punctuation
 
-for i in range(password_length):
-    generated_password += random.choice(all_characters)
+    generated_password = ""
 
-print("Generated Password:", generated_password)
+    for i in range(password_length):
+        generated_password += random.choice(all_characters)
+
+    print("Generated Password:", generated_password)
+
+except ValueError:
+    print("Please enter a valid numeric length.")
